@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>DinoSnake</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="game-container">
+        <div class="score-container">
+            <span>Score: </span>
+            <span id="score">0</span>
+        </div>
+        <canvas id="gameCanvas"></canvas>
+        <div class="game-over hidden" id="gameOver">
+            <h2>Game Over!</h2>
+            <p>Final Score: <span id="finalScore">0</span></p>
+            <button id="restartButton">Play Again</button>
+        </div>
+        <div class="mobile-controls">
+            <button id="leftButton">←</button>
+            <button id="jumpButton">JUMP</button>
+            <button id="rightButton">→</button>
+        </div>
+    </div>
+    <script src="game.js"></script>
+</body>
+</html> 

@@ -1,0 +1,211 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    touch-action: manipulation;
+    color: #333;
+}
+
+.game-container {
+    position: relative;
+    background-color: rgba(255, 255, 255, 0.95);
+    padding: 25px;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    width: 100%;
+    max-width: 840px; /* 800px canvas + 40px padding */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    backdrop-filter: blur(5px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.score-container {
+    text-align: center;
+    font-size: 28px;
+    margin-bottom: 15px;
+    width: 100%;
+    font-weight: bold;
+    color: #2575fc;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+#gameCanvas {
+    border: 3px solid #333;
+    background-color: #f8f9fa;
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 8px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.game-over {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: rgba(255, 255, 255, 0.95);
+    padding: 30px;
+    border-radius: 15px;
+    text-align: center;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    z-index: 10;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(5px);
+    min-width: 300px;
+}
+
+.game-over h2 {
+    color: #e74c3c;
+    margin-bottom: 15px;
+    font-size: 28px;
+}
+
+.game-over p {
+    font-size: 18px;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+.hidden {
+    display: none;
+}
+
+#restartButton {
+    margin-top: 15px;
+    padding: 12px 25px;
+    font-size: 18px;
+    background: linear-gradient(to right, #4CAF50, #45a049);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-weight: bold;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+#restartButton:hover {
+    background: linear-gradient(to right, #45a049, #3d8b40);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
+}
+
+#restartButton:active {
+    transform: translateY(1px);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.mobile-controls {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    max-width: 300px;
+    margin-top: 25px;
+    gap: 12px;
+}
+
+.mobile-controls button {
+    flex: 1;
+    padding: 18px;
+    font-size: 20px;
+    background: linear-gradient(to bottom, #4CAF50, #45a049);
+    color: white;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    touch-action: manipulation;
+    font-weight: bold;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.mobile-controls button:active {
+    background: linear-gradient(to bottom, #45a049, #3d8b40);
+    transform: translateY(2px);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+#jumpButton {
+    flex: 2;
+    background: linear-gradient(to bottom, #2196F3, #1976D2);
+}
+
+#jumpButton:active {
+    background: linear-gradient(to bottom, #1976D2, #1565C0);
+}
+
+/* Mobile styles */
+@media (max-width: 767px) {
+    .game-container {
+        padding: 20px;
+        border-radius: 0;
+        box-shadow: none;
+        max-width: 100%;
+        min-height: 100vh;
+    }
+    
+    .score-container {
+        font-size: 24px;
+    }
+    
+    .game-over {
+        width: 80%;
+        max-width: 300px;
+    }
+}
+
+/* Desktop styles */
+@media (min-width: 768px) {
+    .mobile-controls {
+        display: none;
+    }
+}
+
+/* Level up message animation */
+.level-up-message {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: linear-gradient(to right, #FFD700, #FFA500);
+    color: #333;
+    font-size: 36px;
+    font-weight: bold;
+    padding: 20px 40px;
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(255, 215, 0, 0.7);
+    animation: levelUp 2s ease-in-out forwards;
+    z-index: 20;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+@keyframes levelUp {
+    0% {
+        transform: translate(-50%, -50%) scale(0.5);
+        opacity: 0;
+    }
+    20% {
+        transform: translate(-50%, -50%) scale(1.2);
+        opacity: 1;
+    }
+    80% {
+        transform: translate(-50%, -50%) scale(1);
+        opacity: 1;
+    }
+    100% {
+        transform: translate(-50%, -50%) scale(1.5);
+        opacity: 0;
+    }
+} 
