@@ -5,7 +5,7 @@ class DinoSnake {
         this.setupCanvas();
         
         this.snake = [{x: 50, y: this.canvas.height - 50}];
-        this.direction = 'left';
+        this.direction = 'right';
         this.food = this.generateFood();
         this.obstacles = [];
         this.score = 0;
