@@ -73,32 +73,18 @@ class DinoSnake {
     setupEventListeners() {
         // Keyboard controls
         document.addEventListener('keydown', (e) => {
-            if (e.code === 'Space') {
+            if (e.code === 'Space' || e.code === 'ArrowUp') {
                 this.jump();
             }
-            if (e.code === 'ArrowLeft' && this.direction !== 'right') {
-                this.direction = 'left';
-            }
-            if (e.code === 'ArrowRight' && this.direction !== 'left') {
-                this.direction = 'right';
-            }
+            // if (e.code === 'ArrowLeft') {
+            //     this.direction = 'left';
+            // }
+            // if (e.code === 'ArrowRight') {
+            //     this.direction = 'right';
+            // }
         });
         
-        // Mobile controls
-        document.getElementById('leftButton').addEventListener('touchstart', (e) => {
-            e.preventDefault();
-            if (this.direction !== 'right') {
-                this.direction = 'left';
-            }
-        });
-        
-        document.getElementById('rightButton').addEventListener('touchstart', (e) => {
-            e.preventDefault();
-            if (this.direction !== 'left') {
-                this.direction = 'right';
-            }
-        });
-        
+        // Only jump button for mobile
         document.getElementById('jumpButton').addEventListener('touchstart', (e) => {
             e.preventDefault();
             this.jump();
